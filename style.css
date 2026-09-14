@@ -1,0 +1,279 @@
+/* ===========================================================
+   ANAK CERDIK - laman web
+   Palet diambil terus dari design token aplikasi supaya laman
+   dan app terasa satu keluarga.
+   =========================================================== */
+
+:root {
+  --cream: #fff6e9;
+  --paper: #fffbf3;
+  --ink: #4a3f5c;
+  --ink-soft: #6f6485;   /* kontras 5.1:1 pada krim - lulus WCAG AA */
+  --coral: #f76c8a;      /* aksen besar sahaja - kontras rendah */
+  --coral-text: #c73f60; /* untuk pautan & teks kecil - 4.6:1, lulus AA */
+  --lavender: #b9a7e6;
+  --mint: #6cc79b;
+  --sky: #56b4e8;
+  --yellow: #ffd93d;
+  --line: #eadfd0;
+
+  --wrap: 68rem;
+  --radius: 1.5rem;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+h1, h2, h3, .display {
+  font-family: Fredoka, system-ui, sans-serif;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+p { margin: 0 0 1rem; max-width: 62ch; }
+
+a { color: var(--coral-text); }
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--sky);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.wrap {
+  width: min(100% - 2.5rem, var(--wrap));
+  margin-inline: auto;
+}
+
+/* ---------- Kepala ---------- */
+
+.masthead {
+  padding: 1.75rem 0;
+}
+.masthead .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.wordmark {
+  font-family: Fredoka, system-ui, sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--ink);
+}
+.wordmark span:nth-child(1) { color: var(--coral); }
+.wordmark span:nth-child(2) { color: var(--sky); }
+.wordmark span:nth-child(3) { color: var(--mint); }
+.wordmark span:nth-child(4) { color: var(--lavender); }
+
+.masthead nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-left: 1.5rem;
+}
+.masthead nav a:hover { color: var(--ink); }
+
+/* ---------- Hero ---------- */
+
+.hero { padding: 2rem 0 4.5rem; }
+
+.hero h1 {
+  font-size: clamp(2.1rem, 6vw, 3.6rem);
+  max-width: 18ch;
+}
+.hero .lede {
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  margin-top: 1.25rem;
+  max-width: 48ch;
+}
+
+/* Spesimen: tiga sistem tulisan yang app ini ajar.
+   Ini produknya dalam satu pandangan - bukan hiasan. */
+.specimen {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 3rem;
+}
+.glyph {
+  background: var(--paper);
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  padding: 2rem 1rem 1.25rem;
+  text-align: center;
+}
+.glyph b {
+  display: block;
+  font-family: Fredoka, system-ui, sans-serif;
+  font-size: clamp(3.5rem, 12vw, 6rem);
+  font-weight: 600;
+  line-height: 1;
+}
+.glyph small {
+  display: block;
+  margin-top: 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+.glyph:nth-child(1) b { color: var(--sky); }
+.glyph:nth-child(2) b { color: var(--coral); }
+.glyph:nth-child(3) b { color: var(--mint); font-size: clamp(3.5rem, 12vw, 6rem); }
+
+/* Satu momen gerakan sahaja: glif mendarat semasa halaman dibuka. */
+@media (prefers-reduced-motion: no-preference) {
+  .glyph { animation: land 0.5s cubic-bezier(0.2, 0.7, 0.3, 1) backwards; }
+  .glyph:nth-child(1) { animation-delay: 0.05s; }
+  .glyph:nth-child(2) { animation-delay: 0.15s; }
+  .glyph:nth-child(3) { animation-delay: 0.25s; }
+}
+@keyframes land {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- Seksyen ---------- */
+
+section { padding: 3.5rem 0; }
+section h2 {
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  margin-bottom: 0.75rem;
+}
+.section-intro { color: var(--ink-soft); margin-bottom: 2rem; }
+
+.rule { border: 0; border-top: 2px solid var(--line); margin: 0; }
+
+/* Modul - dibezakan oleh glifnya, bukan kad seragam */
+.modules { display: grid; gap: 1.25rem; }
+.module {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.5rem;
+  background: var(--paper);
+  border-radius: var(--radius);
+  border-left: 6px solid var(--line);
+}
+.module.num { border-left-color: var(--sky); }
+.module.abc { border-left-color: var(--coral); }
+.module.hij { border-left-color: var(--mint); }
+.module .mark {
+  font-family: Fredoka, system-ui, sans-serif;
+  font-size: 2.6rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+}
+.module.num .mark { color: var(--sky); }
+.module.abc .mark { color: var(--coral); }
+.module.hij .mark { color: var(--mint); }
+.module h3 { font-size: 1.2rem; margin-bottom: 0.35rem; }
+.module p { margin: 0; color: var(--ink-soft); font-size: 0.98rem; }
+.module .count {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--cream);
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+}
+
+/* Aliran pembelajaran - ini memang jujukan, jadi ia dinomborkan */
+.flow { counter-reset: step; display: grid; gap: 0.75rem; margin: 0; padding: 0; }
+.flow li {
+  counter-increment: step;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 2.25rem 1fr;
+  gap: 1rem;
+  align-items: baseline;
+}
+.flow li::before {
+  content: counter(step);
+  font-family: Fredoka, system-ui, sans-serif;
+  font-weight: 600;
+  color: var(--lavender);
+  font-size: 1.4rem;
+  text-align: center;
+}
+.flow strong { display: block; }
+.flow span { color: var(--ink-soft); font-size: 0.98rem; }
+
+/* Jaminan untuk ibu bapa */
+.promises { display: grid; gap: 1.5rem; }
+.promise h3 { font-size: 1.05rem; margin-bottom: 0.3rem; }
+.promise p { margin: 0; color: var(--ink-soft); font-size: 0.98rem; }
+
+/* Status */
+.status {
+  background: var(--paper);
+  border: 2px dashed var(--lavender);
+  border-radius: var(--radius);
+  padding: 2rem;
+}
+.status h2 { margin-bottom: 0.5rem; }
+.status p:last-child { margin-bottom: 0; }
+
+.mail {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: 700;
+}
+
+/* ---------- Kaki ---------- */
+
+footer {
+  border-top: 2px solid var(--line);
+  padding: 2rem 0 3rem;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; }
+footer a { color: var(--ink-soft); }
+
+/* ---------- Halaman teks (privasi) ---------- */
+
+.doc { padding: 1rem 0 4rem; }
+.doc h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); margin-bottom: 0.5rem; }
+.doc .updated { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 2.5rem; }
+.doc h2 { font-size: 1.25rem; margin: 2.5rem 0 0.75rem; }
+.doc ul { padding-left: 1.2rem; max-width: 62ch; }
+.doc li { margin-bottom: 0.45rem; }
+.doc .callout {
+  background: var(--paper);
+  border-left: 6px solid var(--mint);
+  border-radius: 0 1rem 1rem 0;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.doc .callout p:last-child { margin-bottom: 0; }
+
+/* ---------- Responsif ---------- */
+
+@media (max-width: 40rem) {
+  .specimen { grid-template-columns: 1fr; }
+  .module { grid-template-columns: 1fr; gap: 0.75rem; }
+  .module .mark { text-align: left; }
+  .masthead .wrap { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .masthead nav a { margin-left: 0; margin-right: 1.25rem; }
+}
